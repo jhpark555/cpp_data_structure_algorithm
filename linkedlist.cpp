@@ -175,7 +175,5 @@ int main()
    reverseNode(&head);  printNode(head); printf("***");  reverseNode(&newnode); printNode(newnode);
 
 
-
-
     return 0;
 }
