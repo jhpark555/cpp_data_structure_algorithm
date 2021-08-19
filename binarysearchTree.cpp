@@ -31,6 +31,7 @@ void insertElement(node **tree,int val)
     if(val < (*tree)->data )   insertElement(&(*tree)->left,val);
     else insertElement(&(*tree)->right,val);
   }
+
 }
 
 void preorderTraverse(node *tree)

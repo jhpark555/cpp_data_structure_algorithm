@@ -67,12 +67,21 @@ void printList(Node *head)
 {
   Node *curr=head;
 
-  while(curr->next!=NULL)
+  while(curr!=NULL)
   {
     cout<<curr->data<<"->";
     curr=curr->next;
   }
   cout<<"nullptr";
+}
+
+void moveNode(Node **dst,Node **src)
+{
+  Node *curr=*src;;
+
+  (*src)=(*src)->next;
+  curr->next= *dst;
+  *dst=curr;
 }
 
 int main()
@@ -83,6 +92,7 @@ int main()
   int i;
 
   Node *head=NULL;
+
   for(i=n+1;i > 0; i--)
   {
     push(head,i);
@@ -98,4 +108,12 @@ int main()
   Node *obj=identifyCycle(head);
   removeCycle(obj,head);
   printList(head);
+
+  //  move Node test code
+  Node *dst=NULL;
+  while( head!=nullptr){
+  moveNode(&dst,&head);
+  cout<<" Move node test "<<endl;
+  printList(dst);
+  }
 }

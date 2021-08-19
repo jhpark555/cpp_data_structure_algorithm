@@ -1,32 +1,76 @@
-#include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-void firstarr(char *arr,int n)
+struct node
 {
-    int i;
+  int data;
+  struct node *left;
+  struct node *right;
+};
 
-   for(i=0;i<n;i++){
-   arr[i]= arr[i]+1;
-   //printf("%c ", arr[i]);
+void insertElement(struct node **tree,int val)
+{
+  struct node *newNode=(struct node *)malloc(sizeof(struct node));
+  struct node *curr=*tree;
+  struct node *parent=NULL;
 
-   }
+  newNode->data=val;
+  newNode->left=NULL;
+  newNode->right=NULL;
 
+  if( (*tree)== NULL)
+  {
+    (*tree)=newNode;
+    (*tree)->left=NULL;
+    (*tree)->right=NULL;
+  }
+  else
+  {
+     while(curr!=NULL)
+     {
+       parent=curr;
+       if(val < curr->data) curr=curr->left;
+       else curr=curr->right;
+     }
+    if(val<parent->data) parent->left=newNode;
+    else parent->right=newNode;
+  }
+  //return tree;
 }
 
+void preorderTraverse(struct node *tree)
+{
+  if(tree!=NULL)
+  {
+    printf("%d \t",tree->data);
+    preorderTraverse(tree->left);
+    preorderTraverse(tree->right);
+  }
+}
+
+void inorderTraverse(struct node *tree)
+{
+  if(tree!=NULL)
+  {
+    inorderTraverse(tree->left);
+    printf("%d \t",tree->data);
+    inorderTraverse(tree->right);
+  }
+}
 int main()
 {
-   // int *arr=malloc(5);
-    char arr[]="hello";
-    int i;
-    int n=strlen(arr);
+ struct node *tree=NULL;
 
-   // for(i=0;i<5;i++) arr[i]=i;
+  insertElement(&tree,50);
+  insertElement(&tree,30);
+  insertElement(&tree,20);
+  insertElement(&tree,40);
+  insertElement(&tree,70);
+  insertElement(&tree,60);
+  insertElement(&tree,80);
 
-    firstarr(arr,n);
 
-    for(i=0;i<5;i++)
-    printf("%c ",arr[i]);
+ preorderTraverse(tree);   printf("\n");
+ inorderTraverse(tree);
 
-    return 0;
 }
