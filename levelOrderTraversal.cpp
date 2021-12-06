@@ -37,7 +37,7 @@ void printlevel(Node *root,int level)
     printlevel(root->right,level-1);
   }
 }
-  
+
 void levelOrder(Node *root)
 {
   if(root ==nullptr) return;
@@ -45,6 +45,22 @@ void levelOrder(Node *root)
   int h=height(root);
   for(int i=1; i <= h; i++)
    printlevel(root,i);
+}
+
+void Traverse(Node *root)
+{
+  queue<Node*> q;
+  if(root !=nullptr) q.push(root);
+
+  while(!q.empty())
+  {
+    Node *u=q.front();
+    printf("%d ",u->data);
+    if(u->left !=nullptr) q.push(u->left);
+    if(u->right !=nullptr) q.push(u->right);
+    q.pop();
+  }
+
 }
 int main()
 {
@@ -64,5 +80,6 @@ int main()
   //printf("H= %d ",  height(root));
     /* Calling function for Level Order Traversal */
     cout<<"The Level Order Traversal of the Given Binary Tree is:\n";
-    levelOrder(root);
+  //  levelOrder(root);
+  Traverse(root);
 }
