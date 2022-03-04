@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-#define MAX 10
+#define MAX 5
 
 void breadth_first_search(int adj[][MAX],int visited[],int start)
 {
@@ -11,7 +11,7 @@ void breadth_first_search(int adj[][MAX],int visited[],int start)
   while(rear !=front)
   {
     start=queue[++front];    // dequeue from queue
-    if(start ==4)
+    if(start ==5 )
         printf("5\t");
     else
         printf("%c \t",start+65);
@@ -20,7 +20,7 @@ void breadth_first_search(int adj[][MAX],int visited[],int start)
     {
       if(adj[start][i] ==1 && visited[i] ==0)
       {
-        queue[++rear]= 1;
+        queue[++rear]= i;
         visited[i] = 1;
       }
     }
@@ -38,6 +38,6 @@ int main()
       0 ,0, 1, 1, 0
     };
   breadth_first_search(adj,visited,0);
-
+  return 0;
 
 }
